@@ -30,13 +30,12 @@ app.use("/portfolio", portfolioRoutes);
 
 app.get("/", async (req, res) => {
 
-    let users = [];
     try {
-        users = await getAllUsers();    
+        const users = await getAllUsers();
     } catch (error) {
         console.error(error);
-    }
-    
+        return res.status(500).send("Error de base de datos");
+    }    
 
     let user = null;
 
